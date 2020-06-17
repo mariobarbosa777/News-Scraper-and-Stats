@@ -40,13 +40,13 @@ class NewsStats:
         return self._alphaNumTokens
 
     def GetTokensWithoutStopWords(self):
-        return self._tokensNonStopWd
+        return self._tokensWithoutStopWd
 
     def GetAlphaNumTokensWithoutStopWords(self):
         return self._alphaNumTokensWithoutStopWd
 
     def GetMostCommonWords(self,num=10):
-        return fdist.most_common(num)
+        return self._fdist.most_common(num)
 
     def GetVocabulary(self,includestopwords=False):
         if includestopwords:
