@@ -1,0 +1,22 @@
+newspaperlist:
+
+  newspaper_1:
+    name: "El Espectador"
+    website: 'https://www.elespectador.com'
+    XPATH_links: '//div[@class="GlobalContainer"]//div[@class="Card-title card-title h5"]//a[@class ="card-link"]/@href'
+    XPATH_news_details:
+      title: '//h1[@class="Article-Title"]/text()'
+      body: '//div[@class="Article-Content"]//p[@class="font--secondary"]'
+      imgUrl: '//figure[@class="Article-Image"]/img/@src'
+
+  newspaper_2:
+    name: "El Tiempo"
+    website: 'https://www.eltiempo.com'
+    XPATH_links: '//h3[@class="title-container"]/a/@href'
+    XPATH_news_details:
+      title: '//div[@class="titulo-principal-bk"]/h1//text()'
+      summary: '//div[@class="lead"]/p//text()'
+      body: '//div[@class="articulo-contenido"]//p[@class="contenido"]'
+      imgUrl: '//div[@class="recurso_apertura"]//@src'
+  
+
