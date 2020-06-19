@@ -21,7 +21,8 @@ def get_links(newspaper_dict):
     status, tree = get_tree(newspaper_dict["website"])
     if status:
         links=tree.xpath(newspaper_dict["XPATH_links"])
-        return links
+        
+        return list(set(links))
 
     else:
         return []
@@ -39,7 +40,7 @@ def get_details_dict(details_dict,url):
     if status:
         for details in details_dict:
             new_dict[details] = " ".join(tree.xpath(details_dict[details])).strip()
-            if new_dict["title"] =="":
+            if new_dict["Title"] =="":
                 return {}
 
     print(f"{url} scraped OK")

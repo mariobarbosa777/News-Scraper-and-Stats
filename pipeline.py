@@ -1,5 +1,4 @@
-
-from scraper import *
+from scraper import get_tree, get_links, create_urlnews, get_details_dict
 from config import get_config
 import pandas as pd
 from datetime import datetime
@@ -21,8 +20,7 @@ def run():
         dfnews=pd.DataFrame(arraynews)
         dfnews.dropna(inplace=True)
 
-
-        dfnews.to_csv(f"{config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d - %I-%M-%S')}.csv",encoding='utf-8-sig', index=False)
+        dfnews.to_csv(f"{config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d - %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
 
 
 
