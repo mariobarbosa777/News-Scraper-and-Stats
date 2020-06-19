@@ -1,7 +1,7 @@
 newspaperlist:
 
   newspaper_1:
-    name: "El Espectador"
+    name: "El-Espectador"
     website: 'https://www.elespectador.com'
     XPATH_links: '//div[@class="GlobalContainer"]//div[@class="Card-title card-title h5"]//a[@class ="card-link"]/@href'
     XPATH_news_details:
@@ -10,7 +10,7 @@ newspaperlist:
       #imgUrl: '//figure[@class="Article-Image"]/img/@src'
 
   newspaper_2:
-    name: "El Tiempo"
+    name: "El-Tiempo"
     website: 'https://www.eltiempo.com'
     XPATH_links: '//h3[@class="title-container"]/a/@href'
     XPATH_news_details:
