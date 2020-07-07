@@ -34,19 +34,7 @@ def create_urlnews(newspaper_dict, links):
 
     return news_urls
 
-def get_details_dict(details_dict,url):
-    status, tree = get_tree(url)
-    new_dict = {}
-    if status:
-        for details in details_dict:
-            new_dict[details] = " ".join(tree.xpath(details_dict[details])).strip()
-            if new_dict["Title"] =="":
-                return {}
 
-    print(f"{url} scraped OK")
-
-    new_dict["url"] = url
-    return new_dict
 
 
     
