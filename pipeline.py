@@ -1,8 +1,8 @@
-from scraper import get_tree, get_links, create_urlnews
+from scraper.scraper import get_tree, get_links, create_urlnews
 from config import get_config
 import pandas as pd
 from datetime import datetime
-from LangStats import NewsStats
+from stats.LangStats import NewsStats
 
 def get_details_dict(details_dict,url):
     status, tree = get_tree(url)
