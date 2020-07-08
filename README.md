@@ -9,7 +9,7 @@ This generate two .cvs per newspaper (News data and Stats)
 
     python -m venv venv
 
-    source venv/bin/activate  fot linux or source venv/Scripts/Activate for windows
+    source venv/bin/activate  for linux or source venv/Scripts/Activate for windows
 
     pip install -r requirements.txt
 
