@@ -54,6 +54,12 @@ class NewsStats:
         else : 
             return self._vocabularyWithoutStopWd
 
+    def GetVocabularyLen(self,includestopwords=False):
+        if includestopwords:
+            return len(self._vocabulary)
+        else : 
+            return len(self._vocabularyWithoutStopWd)
+
     def GetLexicalWealth(self,includestopwords=False):
         if includestopwords:
             return len(self._vocabulary)/len(self._tokens) 
@@ -61,14 +67,14 @@ class NewsStats:
             return len(self._vocabularyWithoutStopWd)/len(self._tokensWithoutStopWd) 
 
 
-    def GetBigrams(self,num=10,freqfilter=1):
+    def GetBigrams(self,num=10,freqfilter=5):
         bigram_measure=nltk.collocations.BigramAssocMeasures()
         finder = nltk.collocations.BigramCollocationFinder.from_words(self._tokens)
         finder.apply_freq_filter(freqfilter)
         
         return finder.nbest(bigram_measure.pmi,num)
 
-    def GetBigramswithPMI(self,num=10,freqfilter=1):
+    def GetBigramswithPMI(self,num=5,freqfilter=5):
         bigram_measure=nltk.collocations.BigramAssocMeasures()
         finder = nltk.collocations.BigramCollocationFinder.from_words(self._tokens)
         finder.apply_freq_filter(freqfilter)
@@ -80,7 +86,7 @@ class NewsStats:
         else :
             return Bigramspmi
 
-    def GetTrigrams(self,num=10,freqfilter=1):
+    def GetTrigrams(self,num=5,freqfilter=5):
         Trigram_measure=nltk.collocations.TrigramAssocMeasures()
         finder = nltk.collocations.TrigramCollocationFinder.from_words(self._tokens)
         finder.apply_freq_filter(freqfilter)
@@ -88,7 +94,7 @@ class NewsStats:
 
         return finder.nbest(Trigram_measure.pmi,num)
 
-    def GetTrigramswithPMI(self, num=10,freqfilter=1):
+    def GetTrigramswithPMI(self, num=10,freqfilter=5):
         Trigram_measure=nltk.collocations.TrigramAssocMeasures()
         finder = nltk.collocations.TrigramCollocationFinder.from_words(self._tokens)
         finder.apply_freq_filter(freqfilter)

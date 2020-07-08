@@ -19,8 +19,6 @@ def get_details_dict(details_dict,url):
     return new_dict
 
 
-
-
 def get_data_news():
     config=get_config()
     for newspaper in config["newspaperlist"]:
@@ -30,33 +28,55 @@ def get_data_news():
         links= get_links(newspaper_dict)
         news_urls = create_urlnews(newspaper_dict,links)
 
-        arraynews=[]
-        for news_url in news_urls:
-            arraynews.append(get_details_dict(details_dict,news_url))
-            get_newsstats(details_dict)
+        arraynews = []
+        arraynews_stats = []
 
-        dfnews=pd.DataFrame(arraynews)
+        for news_url in news_urls:
+            news_details_dict = get_details_dict(details_dict,news_url)
+            if news_details_dict:
+                arraynews.append(news_details_dict)
+                arraynews_stats.append(get_news_stats(news_details_dict))
+           
+        dfnews = pd.DataFrame(arraynews)
         dfnews.dropna(inplace=True)
 
-        dfnews.to_csv(f"{config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
+        dfstats = pd.DataFrame(arraynews_stats)
+        dfstats.dropna(inplace=True)
 
+        dfnews.to_csv(f"News {config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
+        dfstats.to_csv(f"Stats {config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
 
-def jointextList(textlist):
+def join_text_from_dict(news_details_dict):
     textofull=[]
-    for text in textlist:
-        textofull.extend(text)
+    for key in news_details_dict:
+        textofull.append(news_details_dict[key])
 
-    return " ".join(textofull)
+    return  " ".join(textofull)
+
+def get_news_stats(news_details_dict):
+    Stats = NewsStats(text =join_text_from_dict(news_details_dict))
+
+    news_stats_dict = { }
+
+    news_stats_dict["Tittle"] = news_details_dict["Title"]
+    news_stats_dict["url"] = news_details_dict["url"]
+
+    news_stats_dict["Vocabulary_len-No_StopWords"] = Stats.GetVocabularyLen()
+    news_stats_dict["Vocabulary_len-No_StopWords"] = Stats.GetVocabularyLen()
+    news_stats_dict["Vocabulary_len-With_StopWords"] = Stats.GetVocabularyLen(includestopwords=True)
+    
+    news_stats_dict["Common_words"] = Stats.GetMostCommonWords()
+    news_stats_dict["Lexical_wealth"] = Stats.GetLexicalWealth()
+    news_stats_dict["Bigrams_PMI"] = Stats.GetBigramswithPMI()
+    news_stats_dict["Trigrams_PMI"] = Stats.GetTrigramswithPMI()
 
 
-def get_newsstats(details_dict):
-    pass
+    return news_stats_dict
 
 
 
 def run():
-     get_data_news()
-
+    get_data_news()
 
 if __name__ == "__main__":
     run()

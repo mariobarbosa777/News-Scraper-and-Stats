@@ -17,6 +17,6 @@ newspaperlist:
       Title: '//div[@class="titulo-principal-bk"]/h1//text()'
       Date: '//span[@class="fecha"]/text()'
       Summary: '//div[@class="lead"]/p//text()'
-      Body: '//div[@class="articulo-contenido"]//p[@class="contenido"]/text()'
+      Body: '//div[@class="articulo-contenido"]//p[@class="contenido"]//text()'
       #ImgUrl: '//div[@class="recurso_apertura"]//@src'
   
