@@ -5,7 +5,7 @@ For each newspaper_X in config.yaml, a .csv is created with details in XPATH_new
 This generate two .cvs per newspaper (News data and Stats) 
 
 The stats are:
-    Vocabulary len, Common words, Lexical wealth, Bigrams, Trigrams
+    Vocabulary len, Common words, Lexical wealth, Bigrams and  Trigrams
 
 #Use
     Clone this repository and move to folder
