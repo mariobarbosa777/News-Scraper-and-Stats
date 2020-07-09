@@ -19,7 +19,7 @@ def get_details_dict(details_dict,url):
     return new_dict
 
 
-def get_data_news():
+def get_data_news(exportCSV = True):
     config=get_config()
     for newspaper in config["newspaperlist"]:
         newspaper_dict = config["newspaperlist"][newspaper]
@@ -43,8 +43,11 @@ def get_data_news():
         dfstats = pd.DataFrame(arraynews_stats)
         dfstats.dropna(inplace=True)
 
-        dfnews.to_csv(f"News {config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
-        dfstats.to_csv(f"Stats {config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
+        if exportCSV:
+            dfnews.to_csv(f"News {config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
+            dfstats.to_csv(f"Stats {config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
+
+    return  arraynews
 
 def join_text_from_dict(news_details_dict):
     textofull=[]
@@ -73,10 +76,10 @@ def get_news_stats(news_details_dict):
 
     return news_stats_dict
 
-
-
 def run():
     get_data_news()
+
+
 
 if __name__ == "__main__":
     run()
