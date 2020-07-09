@@ -7,7 +7,7 @@ This generate two .cvs per newspaper (News data and Stats)
 The stats are:
     Vocabulary len, Common words, Lexical wealth, Bigrams and  Trigrams
 
-#Use
+# Export CSV 
     Clone this repository and move to folder
 
     python -m venv venv
@@ -17,3 +17,9 @@ The stats are:
     pip install -r requirements.txt
 
     python pipeline.py
+
+# Consult by API
+
+
+
+# HTML view 

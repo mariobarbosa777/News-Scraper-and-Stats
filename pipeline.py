@@ -47,7 +47,7 @@ def get_data_news(exportCSV = True):
             dfnews.to_csv(f"News {config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
             dfstats.to_csv(f"Stats {config['newspaperlist'][newspaper]['name']} at {datetime.now().strftime(' %Y, %m, %d %H-%M-%S')}.csv",encoding='utf-8-sig', index=False)
 
-    return  arraynews
+    return  arraynews, arraynews_stats
 
 def join_text_from_dict(news_details_dict):
     textofull=[]
